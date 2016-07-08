@@ -9,12 +9,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.concurrent.TimeUnit;
+
 import static junit.framework.TestCase.assertTrue;
 
 
-/**
- * Created by strel on 10.05.2016.
- */
 public class AddToGroupTest {
 
     private WebDriver driver;
@@ -25,10 +24,12 @@ public class AddToGroupTest {
     public void setUp() throws Exception {
         driver = TestUtil.initializeDriver();
         mainPage = PageFactory.initElements(driver, MainPage.class);
+        TestUtil.sleep();
     }
 
     @After
     public void tearDown() throws Exception {
+        TestUtil.sleep();
         driver.quit();
     }
 

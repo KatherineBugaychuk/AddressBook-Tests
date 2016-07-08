@@ -10,9 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by strel on 10.05.2016.
- */
+
 public class GroupTest {
 
     private WebDriver driver;
@@ -23,18 +21,23 @@ public class GroupTest {
     public void setUp() throws Exception {
         driver = TestUtil.initializeDriver();
         mainPage = PageFactory.initElements(driver, MainPage.class);
+        TestUtil.sleep();
     }
 
     @After
     public void tearDown() throws Exception {
+        TestUtil.sleep();
         driver.quit();
     }
 
     @Test
     public void testAddGroup() throws Exception {
         GroupsPage page = mainPage.clickGroupsPage();
+        TestUtil.sleep();
         page.clickNewGroupBtn();
-        page.addNewGroup("Slayer", "Thrash Metal", "Obey your Lord!");
+        TestUtil.sleep();
+        page.addNewGroup("Slayer", "Thrash Metal", "Obey your Lord Mephisto!");
+        TestUtil.sleep();
         assertTrue(page.checkResult("Slayer"));
     }
 }

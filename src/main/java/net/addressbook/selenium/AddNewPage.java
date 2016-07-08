@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.internal.Streams;
 import org.openqa.selenium.support.FindBy;
 
-/**
- * Created by Nostalex on 10.05.2016.
- */
+
 public class AddNewPage extends AbstractPage{
     @FindBy(name = "firstname")
     private WebElement firstNameLocator;
@@ -52,13 +50,76 @@ public class AddNewPage extends AbstractPage{
     @FindBy(name = "phone2")
     private WebElement homeSecondaryLocator;
 
+    @FindBy(name = "submit")
+    private WebElement submitBtn;
+
 
     public AddNewPage(WebDriver driver) {
         super(driver);
 
-        if(driver.findElement(By.id("work")) == null) {
+        if(driver.findElement(By.name("work")) == null) {
             throw new IllegalStateException("This is not Adding page!");
         }
+    }
+
+    public void addNewAddressBookEntry(String firstName, String lastName, String addressPrimary,
+                                       String homeTel, String mobileTel, String workTel, String email1, String email2,
+                                       String dayBirth, String monthBirth, String yearBirth, String group)
+    {
+        firstNameLocator.clear();
+        firstNameLocator.sendKeys(firstName);
+
+        lastNameLocator.clear();
+        lastNameLocator.sendKeys(lastName);
+
+        addressPrimaryLocator.clear();
+        addressPrimaryLocator.sendKeys(addressPrimary);
+
+        homeTelLocator.clear();
+        homeTelLocator.sendKeys(homeTel);
+
+        mobileTelLocator.clear();
+        mobileTelLocator.sendKeys(mobileTel);
+
+        workTelLocator.clear();
+        workTelLocator.sendKeys(workTel);
+
+        email1Locator.clear();
+        email1Locator.sendKeys(email1);
+
+        email2Locator.clear();
+        email2Locator.sendKeys(email2);
+
+        /*
+        dayBirthLocator.clear();
+        dayBirthLocator.sendKeys(dayBirth);
+
+        monthBirthLocator.clear();
+        monthBirthLocator.sendKeys(monthBirth);
+
+        yearBirthLocator.clear();
+        yearBirthLocator.sendKeys(yearBirth);
+
+        groupLocator.clear();
+        groupLocator.sendKeys(group);
+        */
+    }
+
+    public void addNewAddressBookEntry(String firstName, String lastName, String addressPrimary,
+                                       String homeTel, String mobileTel, String workTel, String email1, String email2,
+                                       String dayBirth, String monthBirth, String yearBirth, String group,
+                                       String addressSecondary, String homeSecondary)
+    {
+        addNewAddressBookEntry(firstName, lastName,addressPrimary, homeTel, mobileTel, workTel, email1, email2, dayBirth,
+                monthBirth, yearBirth, group);
+
+        addressSecondaryLocator.clear();
+        addressSecondaryLocator.sendKeys(addressSecondary);
+
+        homeSecondaryLocator.clear();
+        homeSecondaryLocator.sendKeys(homeSecondary);
+
+        submitBtn.click();
     }
 
     public WebElement getFirstNameLocator() {
@@ -117,59 +178,7 @@ public class AddNewPage extends AbstractPage{
         return homeSecondaryLocator;
     }
 
-    public void addNewAddressBookEntry(String firstName, String lastName, String addressPrimary,
-                                       String homeTel, String mobileTel, String workTel, String email1, String email2,
-                                       String dayBirth, String monthBirth, String yearBirth, String group)
-    {
-        firstNameLocator.clear();
-        firstNameLocator.sendKeys(firstName);
-
-        lastNameLocator.clear();
-        lastNameLocator.sendKeys(lastName);
-
-        addressPrimaryLocator.clear();
-        addressPrimaryLocator.sendKeys(addressPrimary);
-
-        homeTelLocator.clear();
-        homeTelLocator.sendKeys(homeTel);
-
-        mobileTelLocator.clear();
-        mobileTelLocator.sendKeys(mobileTel);
-
-        workTelLocator.clear();
-        workTelLocator.sendKeys(workTel);
-
-        email1Locator.clear();
-        email1Locator.sendKeys(email1);
-
-        email2Locator.clear();
-        email2Locator.sendKeys(email2);
-
-        dayBirthLocator.clear();
-        dayBirthLocator.sendKeys(dayBirth);
-
-        monthBirthLocator.clear();
-        monthBirthLocator.sendKeys(monthBirth);
-
-        yearBirthLocator.clear();
-        yearBirthLocator.sendKeys(yearBirth);
-
-        groupLocator.clear();
-        groupLocator.sendKeys(group);
-    }
-
-    public void addNewAddressBookEntry(String firstName, String lastName, String addressPrimary,
-                                       String homeTel, String mobileTel, String workTel, String email1, String email2,
-                                       String dayBirth, String monthBirth, String yearBirth, String group,
-                                       String addressSecondary, String homeSecondary)
-    {
-        addNewAddressBookEntry(firstName, lastName,addressPrimary, homeTel, mobileTel, workTel, email1, email2, dayBirth,
-                monthBirth, yearBirth, group);
-
-        addressSecondaryLocator.clear();
-        addressSecondaryLocator.sendKeys(addressSecondary);
-
-        homeSecondaryLocator.clear();
-        homeSecondaryLocator.sendKeys(homeSecondary);
+    public WebElement getSubmitBtn() {
+        return submitBtn;
     }
 }

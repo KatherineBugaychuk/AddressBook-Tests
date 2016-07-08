@@ -9,9 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by Nostalex on 10.05.2016.
- */
+
 public class NextBirthTest {
     private WebDriver driver;
 
@@ -21,10 +19,12 @@ public class NextBirthTest {
     public void setUp() {
         driver = TestUtil.initializeDriver();
         mainPage = PageFactory.initElements(driver, MainPage.class);
+        TestUtil.sleep();
     }
 
     @After
     public void tearDown() {
+        TestUtil.sleep();
         driver.quit();
     }
 
@@ -32,6 +32,7 @@ public class NextBirthTest {
     public void newBirthday(){
         try {
             NextBirthPage nextBirthPage = mainPage.clickNextBirthday();
+            TestUtil.sleep();
             assertTrue(nextBirthPage.getBirthdaysTable() != null);
         } catch(IllegalStateException e) {
             assertTrue(false);
